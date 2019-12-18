@@ -1,9 +1,6 @@
 package com.webschool.engschool.domain;
 
-import com.webschool.engschool.repos.LessonRepo;
-import com.webschool.engschool.repos.TaskRepo;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -18,8 +15,8 @@ import java.util.Set;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
-            generator="native"
+            strategy = GenerationType.AUTO,
+            generator = "native"
     )
     @GenericGenerator(
             name = "native",
@@ -47,6 +44,7 @@ public class User implements UserDetails {
 
     public User() {
     }
+
     public User(User user) {
         this.username = user.username;
         this.password = user.password;
@@ -58,16 +56,19 @@ public class User implements UserDetails {
         this.roles = user.roles;
     }
 
-    public boolean isadmin(){
+    public boolean isadmin() {
         return roles.contains(Role.ADMIN);
     }
-    public boolean isteacher(){
+
+    public boolean isteacher() {
         return roles.contains(Role.TEACHER);
     }
-    public boolean iseditor(){
+
+    public boolean iseditor() {
         return roles.contains(Role.EDITOR);
     }
-    public boolean isstudent(){
+
+    public boolean isstudent() {
         return roles.contains(Role.STUDENT);
     }
 
@@ -136,6 +137,7 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
     public String getBirthd() {
         return birthd;
     }
@@ -159,6 +161,7 @@ public class User implements UserDetails {
     public void setLevel(int level) {
         this.level = level;
     }
+
     public String getPreferences() {
         return preferences;
     }
@@ -166,9 +169,6 @@ public class User implements UserDetails {
     public void setPreferences(String preferences) {
         this.preferences = preferences;
     }
-
-
-
 
 
 }

@@ -22,7 +22,7 @@
 
 <footer class="footer">
     <div class="container text-center">
-        <span class="text-muted">PVI © 2018</span>
+        <span class="text-muted">PVI © 2019</span>
     </div>
 </footer>
 <!-- Optional JavaScript -->

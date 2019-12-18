@@ -17,14 +17,12 @@ import java.util.Collections;
 import java.util.Map;
 
 @Controller
-public class RegistrationController
-{
+public class RegistrationController {
     @Autowired
     private UserRepo userRepo;
 
     @GetMapping("/registration")
-    public String registration()
-    {
+    public String registration() {
         return "registration";
     }
 
@@ -33,11 +31,9 @@ public class RegistrationController
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/registration")
-    public  String addUser(Student student, Map<String, Object> model, RedirectAttributes redirectAttributes)
-    {
+    public String addUser(Student student, Map<String, Object> model, RedirectAttributes redirectAttributes) {
         User userFromDb = userRepo.findByUsername(student.getUsername());
-        if (userFromDb != null)
-        {
+        if (userFromDb != null) {
             model.put("message", "Пользователь существует!");
             return "registration";
         }

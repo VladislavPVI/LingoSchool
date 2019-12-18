@@ -7,6 +7,20 @@ create table lesson (
       teacher_id bigint not null,
       primary key (id));
 
+create table logging (
+      id bigint not null auto_increment,
+      kind_of_change varchar(255) not null,
+      name_Of_class varchar(255) not null,
+      changes varchar(2048),
+      primary key (id));
+
+create table email (
+      id bigint not null auto_increment,
+      email_receiver varchar(255) not null,
+      body varchar(255) not null,
+      sender varchar(255) not null,
+      primary key (id));
+
 create table student (
 
       task bigint default null,

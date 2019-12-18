@@ -1,10 +1,11 @@
 package com.webschool.engschool.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "student")
-public class Student extends User{
+public class Student extends User {
 
     private Long teacherID;
     private Long task;
@@ -18,7 +19,7 @@ public class Student extends User{
     }
 
 
-      public Long getTeacherID() {
+    public Long getTeacherID() {
         return teacherID;
     }
 

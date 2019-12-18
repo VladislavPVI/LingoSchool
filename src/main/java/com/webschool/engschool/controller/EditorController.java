@@ -9,13 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/student")
 @PreAuthorize("hasAuthority('ADMIN') OR hasAuthority('EDITOR')")
-public class EditorController
-{
+public class EditorController {
     @Autowired
     private StudentRepo studentRepo;
 
@@ -30,16 +32,15 @@ public class EditorController
 
     @GetMapping("{student}")
     public String userEditForm(@RequestParam(required = false, defaultValue = "0") int filter,
-                               @PathVariable Student student, Model model)
-    {
+                               @PathVariable Student student, Model model) {
         model.addAttribute("user", student);
         if (student.getTeacherID() != null)
             model.addAttribute("current", userRepo.getOne(student.getTeacherID()).getFullname());
         else model.addAttribute("current", "Not found");
-        if (filter==0)
-        model.addAttribute("teachers", userRepo.findByRoles(Role.TEACHER));
+        if (filter == 0)
+            model.addAttribute("teachers", userRepo.findByRoles(Role.TEACHER));
         else
-            model.addAttribute("teachers", userRepo.findByRolesAndLevel(Role.TEACHER,filter));
+            model.addAttribute("teachers", userRepo.findByRolesAndLevel(Role.TEACHER, filter));
         return "studentEdit";
     }
 
@@ -47,8 +48,7 @@ public class EditorController
     public String userSave(
             @PathVariable Student user,
             @PathVariable User teacher
-    )
-    {
+    ) {
         user.setTeacherID(teacher.getId());
         studentRepo.save(user);
         return "redirect:/student";

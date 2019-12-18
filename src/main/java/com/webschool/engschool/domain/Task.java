@@ -8,11 +8,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Task{
+public class Task {
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
-            generator="native"
+            strategy = GenerationType.AUTO,
+            generator = "native"
     )
     @GenericGenerator(
             name = "native",
@@ -21,7 +21,7 @@ public class Task{
     private Long id;
 
     @NotBlank(message = "Пожалуйста, заполни поле!")
-    @Length(max =2048, message = "Слишком большое задание!")
+    @Length(max = 2048, message = "Слишком большое задание!")
     private String text;
 
     @NotBlank(message = "Пожалуйста, заполни поле!")
@@ -34,6 +34,7 @@ public class Task{
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User author;
+
     public User getAuthor() {
         return author;
     }
@@ -41,7 +42,6 @@ public class Task{
     public void setAuthor(User author) {
         this.author = author;
     }
-
 
 
     public Task() {
@@ -54,8 +54,8 @@ public class Task{
         this.author = author;
     }
 
-    public String getAuthorName(){
-        return  author != null? author.getUsername() : "<none>";
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "<none>";
     }
 
     public String getText() {
@@ -82,7 +82,7 @@ public class Task{
         this.taskname = taskname;
     }
 
-        public int getLevel() {
+    public int getLevel() {
         return level;
     }
 
@@ -98,4 +98,4 @@ public class Task{
         this.type = type;
     }
 
-   }
+}

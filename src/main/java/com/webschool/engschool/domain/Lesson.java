@@ -3,15 +3,15 @@ package com.webschool.engschool.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.*;
+import java.time.LocalDateTime;
 
 @Entity
-public class Lesson{
+public class Lesson {
 
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
-            generator="native"
+            strategy = GenerationType.AUTO,
+            generator = "native"
     )
     @GenericGenerator(
             name = "native",
@@ -36,15 +36,14 @@ public class Lesson{
     }
 
 
-
     public Lesson(LocalDateTime localDateTime, Student student, User teacher) {
         this.localDateTime = localDateTime;
         this.student = student;
         this.teacher = teacher;
-        }
+    }
 
-    public String getStudentId(){
-        return  student != null? student.getUsername() : null;
+    public String getStudentId() {
+        return student != null ? student.getUsername() : null;
     }
 
     public Long getId() {

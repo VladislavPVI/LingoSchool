@@ -18,68 +18,60 @@ import java.util.List;
 @Controller
 @PreAuthorize("hasAuthority('TEACHER')")
 @RequestMapping("/teacherCab")
-public class TeacherController
-{
+public class TeacherController {
     @Autowired
     StudentRepo studentsRepo;
     @Autowired
     LessonRepo lessonRepo;
 
 
-
     @GetMapping
-    public String userList(Model model, @AuthenticationPrincipal User user)
-    {
+    public String userList(Model model, @AuthenticationPrincipal User user) {
         List<Lesson> lessons = lessonRepo.findByTeacherOrderByLocalDateTime(user);
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime bliz = null;
 
-        if (!lessons.isEmpty()){
-            for (Lesson lesson : lessons)
-            {
-                if (now.isBefore(lesson.getLocalDateTime()))
-                {
+        if (!lessons.isEmpty()) {
+            for (Lesson lesson : lessons) {
+                if (now.isBefore(lesson.getLocalDateTime())) {
                     bliz = lesson.getLocalDateTime();
                     break;
                 }
             }
             model.addAttribute("avg", lessonRepo.avgTeacher(user.getId()));
-        }
-
-        else  model.addAttribute("avg", "Дождись первого занятия :)");
+        } else model.addAttribute("avg", "Дождись первого занятия :)");
 
         model.addAttribute("students", studentsRepo.findByTeacherID(user.getId()));
-        model.addAttribute("bliz",bliz);
-        model.addAttribute("now",now);
-        model.addAttribute("lessons",lessons);
-        model.addAttribute("user",user);
+        model.addAttribute("bliz", bliz);
+        model.addAttribute("now", now);
+        model.addAttribute("lessons", lessons);
+        model.addAttribute("user", user);
         return "teacherCabinet";
     }
 
     @PostMapping
     public String add(@AuthenticationPrincipal User user,
                       @RequestParam Student currentStudent,
-                      @RequestParam String timeoflesson)
-    {
+                      @RequestParam String timeoflesson) {
         Lesson lesson = new Lesson(
                 LocalDateTime.parse(timeoflesson), currentStudent, user);
 
         lessonRepo.save(lesson);
         return "redirect:/teacherCab";
     }
+
     @GetMapping("/lesson/{lesson}/{mark}")
     public String addMark(
             @PathVariable Lesson lesson,
-            @PathVariable int mark)
-    {
+            @PathVariable int mark) {
         lesson.setStudentMark(mark);
         lessonRepo.save(lesson);
         return "redirect:/teacherCab";
     }
+
     @GetMapping("/delete/{lesson}")
     public String deleteLesson(
-            @PathVariable Lesson lesson)
-    {
+            @PathVariable Lesson lesson) {
         lessonRepo.delete(lesson);
         return "redirect:/teacherCab";
     }
