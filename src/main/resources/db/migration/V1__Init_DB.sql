@@ -21,6 +21,12 @@ create table email (
       sender varchar(255) not null,
       primary key (id));
 
+create table review (
+      id bigint not null auto_increment,
+      author varchar(255) not null,
+      text varchar(2048) not null,
+      primary key (id));
+
 create table student (
 
       task bigint default null,

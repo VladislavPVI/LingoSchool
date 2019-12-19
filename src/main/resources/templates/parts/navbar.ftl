@@ -17,6 +17,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/student-cab">Private office</a>
             </li>
+             <li class="nav-item">
+                 <a class="nav-link" href="/reviews/viewXSLT">Reviews</a>
+             </li>
             </#if>
                <#if isTeacher>
             <li class="nav-item">
@@ -24,6 +27,9 @@
             </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/main">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reviews/viewXSLT">Reviews</a>
                 </li>
                </#if>
              <#if isEditor>
@@ -33,6 +39,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/main">Tasks</a>
                 </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/reviews/viewXSLT">Reviews</a>
+              </li>
              </#if>
 
             <#if isAdmin>
@@ -44,6 +53,9 @@
             </li>
              <li class="nav-item">
                  <a class="nav-link" href="/user/registration">Add user</a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link" href="/reviews/viewXSLT">Reviews</a>
              </li>
             </#if>
         </ul>
