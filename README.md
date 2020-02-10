@@ -1,7 +1,7 @@
 # LingoSchool
 Мультипользовательское web-приложение для языковой школы
 
-Технологии: *Spring, Spring Boot, Spring Security, MySQL, Flyway, Hibernate, JMS, Bootstrap, FreeMarker, etc.*
+Технологии: **Spring, Spring Boot, Spring Security, MySQL, Flyway, Hibernate, JMS, Bootstrap, FreeMarker, etc.**
 
 Роли пользователей:
 -	Администратор
@@ -19,6 +19,8 @@
 <img src="https://github.com/VladislavPVI/engschool/blob/master/docs/%D1%81%D1%85%D0%B5%D0%BC%D0%B0.png" />
 
 ## Интерфейс пользователя
+*Ниже представлены лишь некоторые страницы веб-приложения*
+
 ### Страница авторизации
 При открытии системы гость попадает на страницу авторизации, где ему предложено ввести логин и пароль, либо если пользователь ранее не был зарегистрирован в системе – есть возможность регистрации.
 
